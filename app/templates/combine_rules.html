@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine Rules</title>
+</head>
+<body>
+    <h1>Combine Rules</h1>
+    <form method="POST">
+        <label>Select Rules to Combine:</label><br>
+        {% for rule in rules %}
+            <input type="checkbox" name="rules" value="{{ rule['rule_string'] }}"> {{ rule['rule_string'] }}<br>
+        {% endfor %}
+        <br>
+        <button type="submit">Combine Selected Rules</button>
+    </form>
+
+    {% if combined_rule %}
+        <h2>Combined Rule:</h2>
+        <p>{{ combined_rule }}</p>
+    {% endif %}
+</body>
+</html>

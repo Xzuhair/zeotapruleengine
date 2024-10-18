@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluate User</title>
+</head>
+<body>
+    <h1>Evaluate User Data</h1>
+    <form method="POST">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <label for="income">Income:</label>
+        <input type="number" id="income" name="income" required><br><br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br><br>
+
+        <button type="submit">Evaluate</button>
+    </form>
+
+    {% if results %}
+        <h2>Evaluation Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li>{{ result }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Message Section -->
+    {% if message %}
+        <h3>{{ message }}</h3>
+    {% endif %}
+
+    <!-- Create Combined Rule Section -->
+    <h2>Create Combined Rule</h2>
+    <form method="POST" action="/evaluate_user">  
+        <label>Select Rules to Combine:</label><br>
+        {% if rules %}
+            {% for rule in rules %}
+                <input type="checkbox" name="rules" value="{{ rule }}"> {{ rule }}<br>
+            {% endfor %}
+        {% else %}
+            <p>No rules available to combine.</p>
+        {% endif %}
+        <button type="submit" name="combine">Combine Rules</button>  
+    </form>
+</body>
+</html>
